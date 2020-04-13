@@ -150,6 +150,5 @@ namespace GScalGOL
         {
             this.Close();
         }
-
     }
 }
