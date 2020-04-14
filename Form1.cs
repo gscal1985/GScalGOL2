@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GScalGOL
@@ -13,17 +7,18 @@ namespace GScalGOL
     public partial class Form1 : Form
     {
         // The universe array
-        bool[,] universe = new bool[5, 5];
+        private bool[,] universe = new bool[5, 5];
 
         // Drawing colors
-        Color gridColor = Color.Black;
-        Color cellColor = Color.Gray;
+        private Color gridColor = Color.Black;
+
+        private Color cellColor = Color.Gray;
 
         // The Timer class
-        Timer timer = new Timer();
+        private Timer timer = new Timer();
 
         // Generation count
-        int generations = 0;
+        private int generations = 0;
 
         public Form1()
         {
@@ -38,8 +33,7 @@ namespace GScalGOL
         //coount neighbors
         private int CountNeighbors(int x, int y)
         {
-            int count;
-            count = 0;
+            int count = 0;
 
             for (int i = x - 1; i < x; i++)
             {
@@ -49,24 +43,15 @@ namespace GScalGOL
                     {
                         if (universe[i, j] == true) count++;
                     }
-
-
                 }
-
-
-
             }
-
 
             return count;
         }
 
-
         // Calculate the next generation of cells
         private void NextGeneration()
         {
-
-
             // Increment generation count
             generations++;
 
@@ -115,6 +100,7 @@ namespace GScalGOL
 
                     // Outline the cell with a pen
                     e.Graphics.DrawRectangle(gridPen, cellRect.X, cellRect.Y, cellRect.Width, cellRect.Height);
+                    e.Graphics.DrawString(CountNeighbors(x, y).ToString(), graphicsPanel1.Font, Brushes.Black, cellRect.Location);
                 }
             }
 
