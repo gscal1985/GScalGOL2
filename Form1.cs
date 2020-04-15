@@ -41,7 +41,7 @@ namespace GScalGOL
                 {
                     if (!((i < 0 || j < 0) || (i >= Height || j >= Width)))
                     {
-                        if (universe[i, j] == true) count++;
+                        if (universe[i, j] == true) { count++; }
                     }
                 }
             }
@@ -91,7 +91,14 @@ namespace GScalGOL
                     cellRect.Y = y * cellHeight;
                     cellRect.Width = cellWidth;
                     cellRect.Height = cellHeight;
+                    Font font = new Font("Arial", 20f);
 
+                    StringFormat stringFormat = new StringFormat();
+                    stringFormat.Alignment = StringAlignment.Center;
+                    stringFormat.LineAlignment = StringAlignment.Center;
+
+                    Rectangle rect = new Rectangle(0, 0, 100, 100);
+                   // int CountNeighbors = 8;
                     // Fill the cell with a brush if alive
                     if (universe[x, y] == true)
                     {
@@ -100,6 +107,7 @@ namespace GScalGOL
 
                     // Outline the cell with a pen
                     e.Graphics.DrawRectangle(gridPen, cellRect.X, cellRect.Y, cellRect.Width, cellRect.Height);
+                    e.Graphics.DrawString(CountNeighbors(x,y).ToString(), font, Brushes.Black, rect, stringFormat);
                     e.Graphics.DrawString(CountNeighbors(x, y).ToString(), graphicsPanel1.Font, Brushes.Black, cellRect.Location);
                 }
             }
