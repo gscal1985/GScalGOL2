@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 
 namespace GScalGOL
-{
+{ //adding
     public partial class Form1 : Form
     {
         // The universe array
