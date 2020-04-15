@@ -38,12 +38,10 @@ namespace GScalGOL
 
             for (int i = -1; i < 2; i++)
             {
-                // Iterate through the universe in the x, left to right
+              
                 for (int j = -1; j < 2; j++)
                 {
-                    //let col = (x + i + cols) % cols;
-                    //let row = (y + j + rows) % rows;
-                    //sum += grid[col][row];
+                  
 
                     int col = (y + i + universe.GetLength(1)) % universe.GetLength(1);
 
@@ -55,6 +53,10 @@ namespace GScalGOL
                     }
                 }
 
+            }
+            if (universe[x, y])
+            {
+                sum--;
             }
             return sum;
         }
