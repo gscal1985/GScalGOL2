@@ -16,7 +16,7 @@ namespace GScalGOL
 
         // The Timer class
         private Timer timer = new Timer();
-
+    
         // Generation count
         private int generations = 0;
 
@@ -33,24 +33,33 @@ namespace GScalGOL
         //coount neighbors
         private int CountNeighbors(int x, int y)
         {
-            int count = 0;
 
-            for (int i = x - 1; i < x; i++)
+            int sum = 0;
+
+            for (int i = -1; i < 2; i++)
             {
-                for (int j = y - 1; j < y; j++)
+                // Iterate through the universe in the x, left to right
+                for (int j = -1; j < 2; j++)
                 {
-                    if (!((i < 0 || j < 0) || (i >= Height || j >= Width)))
+                    //let col = (x + i + cols) % cols;
+                    //let row = (y + j + rows) % rows;
+                    //sum += grid[col][row];
+
+                    int col = (y + i + universe.GetLength(1)) % universe.GetLength(1);
+
+                    int row = (x + j + universe.GetLength(0)) % universe.GetLength(0);
+
+                    if (universe[row, col] == true)
                     {
-                        if (universe[i, j] == true) { count++; }
+                        sum++;
                     }
                 }
+
             }
-
-            return count;
+            return sum;
         }
-
-        // Calculate the next generation of cells
-        private void NextGeneration()
+            // Calculate the next generation of cells
+            private void NextGeneration()
         {
             // Increment generation count
             generations++;
@@ -108,6 +117,8 @@ namespace GScalGOL
                     // Outline the cell with a pen
                     e.Graphics.DrawRectangle(gridPen, cellRect.X, cellRect.Y, cellRect.Width, cellRect.Height);
                     e.Graphics.DrawString(CountNeighbors(x,y).ToString(), font, Brushes.Black, rect, stringFormat);
+                    stringFormat.Dispose();
+                    font.Dispose();
                     e.Graphics.DrawString(CountNeighbors(x, y).ToString(), graphicsPanel1.Font, Brushes.Black, cellRect.Location);
                 }
             }
