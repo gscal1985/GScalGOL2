@@ -189,5 +189,21 @@ namespace GScalGOL
         {
             this.Close();
         }
+
+        private void PlayStartButton_Click(object sender, EventArgs e)
+        {
+            timer.Enabled = true;
+        }
+
+        private void PauseStopButtom_Click(object sender, EventArgs e)
+        {
+            timer.Enabled = false;
+        }
+
+        private void NextStepButton_Click(object sender, EventArgs e)
+        {
+            NextGeneration();
+            graphicsPanel1.Invalidate();
+        }
     }
 }

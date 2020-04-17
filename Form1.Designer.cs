@@ -52,7 +52,6 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelGenerations = new System.Windows.Forms.ToolStripStatusLabel();
-            this.graphicsPanel1 = new GScalGOL.GraphicsPanel();
             this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.saveToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -62,7 +61,10 @@
             this.pasteToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.PlayStartButton = new System.Windows.Forms.ToolStripButton();
+            this.graphicsPanel1 = new GScalGOL.GraphicsPanel();
+            this.PauseStopButtom = new System.Windows.Forms.ToolStripButton();
+            this.NextStepButton = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -247,17 +249,6 @@
             this.toolStripStatusLabelGenerations.Size = new System.Drawing.Size(90, 17);
             this.toolStripStatusLabelGenerations.Text = "Generations = 0";
             // 
-            // graphicsPanel1
-            // 
-            this.graphicsPanel1.BackColor = System.Drawing.SystemColors.Window;
-            this.graphicsPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.graphicsPanel1.Location = new System.Drawing.Point(0, 49);
-            this.graphicsPanel1.Name = "graphicsPanel1";
-            this.graphicsPanel1.Size = new System.Drawing.Size(573, 274);
-            this.graphicsPanel1.TabIndex = 3;
-            this.graphicsPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.graphicsPanel1_Paint);
-            this.graphicsPanel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.graphicsPanel1_MouseClick);
-            // 
             // newToolStripButton
             // 
             this.newToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -333,21 +324,55 @@
             this.copyToolStripButton,
             this.pasteToolStripButton,
             this.toolStripSeparator7,
-            this.toolStripButton1});
+            this.PlayStartButton,
+            this.PauseStopButtom,
+            this.NextStepButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(573, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // toolStripButton1
+            // PlayStartButton
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
+            this.PlayStartButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.PlayStartButton.Image = ((System.Drawing.Image)(resources.GetObject("PlayStartButton.Image")));
+            this.PlayStartButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.PlayStartButton.Name = "PlayStartButton";
+            this.PlayStartButton.Size = new System.Drawing.Size(23, 22);
+            this.PlayStartButton.Text = "Play/Start";
+            this.PlayStartButton.Click += new System.EventHandler(this.PlayStartButton_Click);
+            // 
+            // graphicsPanel1
+            // 
+            this.graphicsPanel1.BackColor = System.Drawing.SystemColors.Window;
+            this.graphicsPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.graphicsPanel1.Location = new System.Drawing.Point(0, 49);
+            this.graphicsPanel1.Name = "graphicsPanel1";
+            this.graphicsPanel1.Size = new System.Drawing.Size(573, 274);
+            this.graphicsPanel1.TabIndex = 3;
+            this.graphicsPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.graphicsPanel1_Paint);
+            this.graphicsPanel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.graphicsPanel1_MouseClick);
+            // 
+            // PauseStopButtom
+            // 
+            this.PauseStopButtom.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.PauseStopButtom.Image = ((System.Drawing.Image)(resources.GetObject("PauseStopButtom.Image")));
+            this.PauseStopButtom.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.PauseStopButtom.Name = "PauseStopButtom";
+            this.PauseStopButtom.Size = new System.Drawing.Size(23, 22);
+            this.PauseStopButtom.Text = "Pasue/Stop";
+            this.PauseStopButtom.Click += new System.EventHandler(this.PauseStopButtom_Click);
+            // 
+            // NextStepButton
+            // 
+            this.NextStepButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.NextStepButton.Image = ((System.Drawing.Image)(resources.GetObject("NextStepButton.Image")));
+            this.NextStepButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.NextStepButton.Name = "NextStepButton";
+            this.NextStepButton.Size = new System.Drawing.Size(23, 22);
+            this.NextStepButton.Text = "Next/Step";
+            this.NextStepButton.Click += new System.EventHandler(this.NextStepButton_Click);
             // 
             // Form1
             // 
@@ -407,7 +432,9 @@
         private System.Windows.Forms.ToolStripButton pasteToolStripButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton PlayStartButton;
+        private System.Windows.Forms.ToolStripButton PauseStopButtom;
+        private System.Windows.Forms.ToolStripButton NextStepButton;
     }
 }
 
