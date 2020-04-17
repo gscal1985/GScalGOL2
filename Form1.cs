@@ -21,7 +21,7 @@ namespace GScalGOL
     
         // Generation count
         private int generations = 0;
-
+        int LivingCells = 0;
         public Form1()
         {
             InitializeComponent();
@@ -30,6 +30,7 @@ namespace GScalGOL
             timer.Interval = 100; // milliseconds
             timer.Tick += Timer_Tick;
             timer.Enabled = false; // start timer running
+
         }
 
         //coount neighbors
@@ -93,7 +94,11 @@ namespace GScalGOL
 
 
                 }
+
+
             }
+                universe = Pad;
+                Pad = temp;
             // Increment generation count
             generations++;
 
@@ -203,6 +208,26 @@ namespace GScalGOL
         private void NextStepButton_Click(object sender, EventArgs e)
         {
             NextGeneration();
+            graphicsPanel1.Invalidate();
+        }
+
+        private void ResetGOL_Click(object sender, EventArgs e)
+        {
+            timer.Enabled = false;
+
+            // Iterate through the universe in the y, top to bottom
+            for (int y = 0; y < universe.GetLength(1); y++)
+            {
+                // Iterate through the universe in the x, left to right
+                for (int x = 0; x < universe.GetLength(0); x++)
+                {
+                    universe[x, y] = false;
+                }
+            }
+
+            // set Generations To 0 and Living Cells
+            generations = 0;
+            
             graphicsPanel1.Invalidate();
         }
     }

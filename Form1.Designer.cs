@@ -65,6 +65,8 @@
             this.graphicsPanel1 = new GScalGOL.GraphicsPanel();
             this.PauseStopButtom = new System.Windows.Forms.ToolStripButton();
             this.NextStepButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.ResetGOL = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -326,7 +328,9 @@
             this.toolStripSeparator7,
             this.PlayStartButton,
             this.PauseStopButtom,
-            this.NextStepButton});
+            this.NextStepButton,
+            this.toolStripSeparator3,
+            this.ResetGOL});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(573, 25);
@@ -373,6 +377,21 @@
             this.NextStepButton.Size = new System.Drawing.Size(23, 22);
             this.NextStepButton.Text = "Next/Step";
             this.NextStepButton.Click += new System.EventHandler(this.NextStepButton_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // ResetGOL
+            // 
+            this.ResetGOL.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ResetGOL.Image = ((System.Drawing.Image)(resources.GetObject("ResetGOL.Image")));
+            this.ResetGOL.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ResetGOL.Name = "ResetGOL";
+            this.ResetGOL.Size = new System.Drawing.Size(23, 22);
+            this.ResetGOL.Text = "Reset";
+            this.ResetGOL.Click += new System.EventHandler(this.ResetGOL_Click);
             // 
             // Form1
             // 
@@ -435,6 +454,8 @@
         private System.Windows.Forms.ToolStripButton PlayStartButton;
         private System.Windows.Forms.ToolStripButton PauseStopButtom;
         private System.Windows.Forms.ToolStripButton NextStepButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton ResetGOL;
     }
 }
 
