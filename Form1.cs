@@ -8,6 +8,8 @@ namespace GScalGOL
     {
         // The universe array
         private bool[,] universe = new bool[5, 5];
+        bool[,] Pad = new bool[20, 20];
+        bool[,] temp = new bool[20, 20];
 
         // Drawing colors
         private Color gridColor = Color.Black;
@@ -63,15 +65,33 @@ namespace GScalGOL
             // Calculate the next generation of cells
             private void NextGeneration()
         {
-
+            temp = universe;
 
             for (int y = 0; y < universe.GetLength(1); y++)
             {
                 // Iterate through the universe in the x, left to right
                 for (int x = 0; x < universe.GetLength(0); x++)
                 {
+                    var cellState = universe[x, y];
+
+
                     int nCount = CountNeighbors(x, y);
                     // Draw count within current position
+
+                    if (cellState == false && nCount == 3)
+                    {
+                        Pad[x, y] = true;
+                    }
+                    else if (cellState == true && (nCount < 2 | nCount > 3))
+                    {
+                        Pad[x, y] = false;
+                    }
+                    else
+                    {
+                        Pad[x, y] = cellState;
+                    }
+
+
                 }
             }
             // Increment generation count
@@ -132,7 +152,8 @@ namespace GScalGOL
                   //  e.Graphics.DrawString(CountNeighbors(x,y).ToString(), font, Brushes.Black, rect, stringFormat);
                     stringFormat.Dispose();
                     font.Dispose();
-                    e.Graphics.DrawString(CountNeighbors(x, y).ToString(), graphicsPanel1.Font, Brushes.Black, cellRect.Location);
+                    TextRenderer.DrawText(e.Graphics, CountNeighbors(x, y).ToString(), this.Font, cellRect, Color.Black, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
+                 //   e.Graphics.DrawString(CountNeighbors(x, y).ToString(), graphicsPanel1.Font, Brushes.Black, cellRect.Location);
                 }
             }
 
