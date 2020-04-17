@@ -3,25 +3,25 @@ using System.Drawing;
 using System.Windows.Forms;
 
 namespace GScalGOL
-{ //adding
+{ //adding as i go
     public partial class Form1 : Form
     {
         // The universe array
         private bool[,] universe = new bool[5, 5];
-        bool[,] Pad = new bool[20, 20];
-        bool[,] temp = new bool[20, 20];
+        bool[,] Pad = new bool[5, 5];
+        bool[,] temp = new bool[5, 5];
 
         // Drawing colors
         private Color gridColor = Color.Black;
-
+       
         private Color cellColor = Color.Gray;
-
+        private Color deadcellC = Color.White;
         // The Timer class
-        private Timer timer = new Timer();
+        public Timer timer = new Timer();
     
         // Generation count
         private int generations = 0;
-        int LivingCells = 0;
+      
         public Form1()
         {
             InitializeComponent();
@@ -104,6 +104,8 @@ namespace GScalGOL
 
             // Update status strip generations
             toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
+
+ graphicsPanel1.Invalidate();
         }
 
         // The event called by the timer every Interval milliseconds.
@@ -125,6 +127,7 @@ namespace GScalGOL
 
             // A Brush for filling living cells interiors (color)
             Brush cellBrush = new SolidBrush(cellColor);
+            Brush deadCellBrush = new SolidBrush(deadcellC);
 
             // Iterate through the universe in the y, top to bottom
             for (int y = 0; y < universe.GetLength(1); y++)
@@ -151,6 +154,10 @@ namespace GScalGOL
                     {
                         e.Graphics.FillRectangle(cellBrush, cellRect);
                     }
+                    else if (universe[x, y] == false)
+                    {
+                        e.Graphics.FillRectangle(deadCellBrush, cellRect);
+                    }
 
                     // Outline the cell with a pen
                     e.Graphics.DrawRectangle(gridPen, cellRect.X, cellRect.Y, cellRect.Width, cellRect.Height);
@@ -165,6 +172,8 @@ namespace GScalGOL
             // Cleaning up pens and brushes
             gridPen.Dispose();
             cellBrush.Dispose();
+            deadCellBrush.Dispose();
+        
         }
 
         private void graphicsPanel1_MouseClick(object sender, MouseEventArgs e)
