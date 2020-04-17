@@ -63,6 +63,17 @@ namespace GScalGOL
             // Calculate the next generation of cells
             private void NextGeneration()
         {
+
+
+            for (int y = 0; y < universe.GetLength(1); y++)
+            {
+                // Iterate through the universe in the x, left to right
+                for (int x = 0; x < universe.GetLength(0); x++)
+                {
+                    int nCount = CountNeighbors(x, y);
+                    // Draw count within current position
+                }
+            }
             // Increment generation count
             generations++;
 
@@ -118,7 +129,7 @@ namespace GScalGOL
 
                     // Outline the cell with a pen
                     e.Graphics.DrawRectangle(gridPen, cellRect.X, cellRect.Y, cellRect.Width, cellRect.Height);
-                    e.Graphics.DrawString(CountNeighbors(x,y).ToString(), font, Brushes.Black, rect, stringFormat);
+                  //  e.Graphics.DrawString(CountNeighbors(x,y).ToString(), font, Brushes.Black, rect, stringFormat);
                     stringFormat.Dispose();
                     font.Dispose();
                     e.Graphics.DrawString(CountNeighbors(x, y).ToString(), graphicsPanel1.Font, Brushes.Black, cellRect.Location);
