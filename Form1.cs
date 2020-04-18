@@ -7,9 +7,9 @@ namespace GScalGOL
     public partial class Form1 : Form
     {
         // The universe array
-        private bool[,] universe = new bool[5, 5];
-        bool[,] Pad = new bool[5, 5];
-        bool[,] temp = new bool[5, 5];
+        private bool[,] universe = new bool[15, 15];
+        bool[,] Pad = new bool[15, 15];
+        bool[,] temp = new bool[15, 15];
 
         // Drawing colors
         private Color gridColor = Color.Black;
@@ -173,7 +173,7 @@ namespace GScalGOL
             gridPen.Dispose();
             cellBrush.Dispose();
             deadCellBrush.Dispose();
-        
+          
         }
 
         private void graphicsPanel1_MouseClick(object sender, MouseEventArgs e)
@@ -239,5 +239,26 @@ namespace GScalGOL
             
             graphicsPanel1.Invalidate();
         }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            timer.Enabled = false;
+
+            // Iterate through the universe in the y, top to bottom
+            for (int y = 0; y < universe.GetLength(1); y++)
+            {
+                // Iterate through the universe in the x, left to right
+                for (int x = 0; x < universe.GetLength(0); x++)
+                {
+                    universe[x, y] = false;
+                }
+            }
+
+            // set Generations To 0 and Living Cells
+            generations = 0;
+
+            graphicsPanel1.Invalidate();
+        }
     }
-}
+    }
