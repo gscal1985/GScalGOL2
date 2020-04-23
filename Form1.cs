@@ -21,7 +21,10 @@ namespace GScalGOL
     
         // Generation count
         private int generations = 0;
-      
+        private int aliveCells = 0;
+
+
+
         public Form1()
         {
             InitializeComponent();
@@ -30,6 +33,9 @@ namespace GScalGOL
             timer.Interval = 100; // milliseconds
             timer.Tick += Timer_Tick;
             timer.Enabled = false; // start timer running
+
+
+         
 
         }
 
@@ -260,5 +266,54 @@ namespace GScalGOL
 
             graphicsPanel1.Invalidate();
         }
+
+        private void RandomButton_Click(object sender, EventArgs e)
+        {
+            int currentSeed;
+            Random seedRand = new Random();
+            for (int y = 0; y < universe.GetLength(1); y++)
+            {
+                for (int x = 0; x < universe.GetLength(0); x++)
+                {
+
+                    currentSeed = seedRand.Next(0, 2);
+
+                    if (currentSeed == 0)
+                    {
+                        universe[x, y] = false;
+                    }
+                    else
+                    {
+                        universe[x, y] = true;
+                    }
+                }
+            }
+            countAliveCells();
+            graphicsPanel1.Invalidate();
+        }
+
+        void countAliveCells() {
+            aliveCells = 0;
+
+            for (int a = 0; a < universe.GetLength(1); a++)
+            {
+                for (int b = 0; b < universe.GetLength(0); b++)
+                {
+
+                    if (universe[b,a] == true)
+                    {
+                        aliveCells++;
+                    }
+
+                }
+
+            }
+            //return aliveCells;
+        
+        }
+
+
+
     }
     }
+    
