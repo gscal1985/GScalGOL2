@@ -40,6 +40,7 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cellColorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,7 +66,14 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.ResetGOL = new System.Windows.Forms.ToolStripButton();
             this.RandomButton = new System.Windows.Forms.ToolStripButton();
+            this.milisecondsToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.default100MilisecondsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mIilisecondsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.milisecondsToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.graphicsPanel1 = new GScalGOL.GraphicsPanel();
+            this.gridViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.onToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.offToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -103,7 +111,7 @@
             this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.newToolStripMenuItem.Text = "&New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -113,14 +121,14 @@
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator.Size = new System.Drawing.Size(143, 6);
             // 
             // saveToolStripMenuItem
             // 
@@ -128,24 +136,24 @@
             this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(143, 6);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(143, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -160,24 +168,38 @@
             // 
             // customizeToolStripMenuItem
             // 
+            this.customizeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cellColorsToolStripMenuItem});
             this.customizeToolStripMenuItem.Name = "customizeToolStripMenuItem";
-            this.customizeToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.customizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.customizeToolStripMenuItem.Text = "&Customize";
+            // 
+            // cellColorsToolStripMenuItem
+            // 
+            this.cellColorsToolStripMenuItem.Name = "cellColorsToolStripMenuItem";
+            this.cellColorsToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.cellColorsToolStripMenuItem.Text = "Cell Colors";
+            this.cellColorsToolStripMenuItem.Click += new System.EventHandler(this.cellColorsToolStripMenuItem_Click);
             // 
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.colorsToolStripMenuItem});
+            this.colorsToolStripMenuItem,
+            this.gridViewToolStripMenuItem});
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.optionsToolStripMenuItem.Text = "&Options";
             // 
             // colorsToolStripMenuItem
             // 
+            this.colorsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.milisecondsToolStripMenuItem2,
+            this.default100MilisecondsToolStripMenuItem,
+            this.mIilisecondsToolStripMenuItem,
+            this.milisecondsToolStripMenuItem3});
             this.colorsToolStripMenuItem.Name = "colorsToolStripMenuItem";
-            this.colorsToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
-            this.colorsToolStripMenuItem.Text = "Colors";
-            this.colorsToolStripMenuItem.Click += new System.EventHandler(this.colorsToolStripMenuItem_Click);
+            this.colorsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.colorsToolStripMenuItem.Text = "Timer Speed";
             // 
             // helpToolStripMenuItem
             // 
@@ -244,6 +266,7 @@
             this.newToolStripButton.Name = "newToolStripButton";
             this.newToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.newToolStripButton.Text = "&New";
+            this.newToolStripButton.Click += new System.EventHandler(this.newToolStripButton_Click);
             // 
             // openToolStripButton
             // 
@@ -380,6 +403,34 @@
             this.RandomButton.Text = "RandomSeed";
             this.RandomButton.Click += new System.EventHandler(this.RandomButton_Click);
             // 
+            // milisecondsToolStripMenuItem2
+            // 
+            this.milisecondsToolStripMenuItem2.Name = "milisecondsToolStripMenuItem2";
+            this.milisecondsToolStripMenuItem2.Size = new System.Drawing.Size(207, 22);
+            this.milisecondsToolStripMenuItem2.Text = "Faster +";
+            this.milisecondsToolStripMenuItem2.Click += new System.EventHandler(this.milisecondsToolStripMenuItem2_Click);
+            // 
+            // default100MilisecondsToolStripMenuItem
+            // 
+            this.default100MilisecondsToolStripMenuItem.Name = "default100MilisecondsToolStripMenuItem";
+            this.default100MilisecondsToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.default100MilisecondsToolStripMenuItem.Text = "Default (100 miliseconds)";
+            this.default100MilisecondsToolStripMenuItem.Click += new System.EventHandler(this.default100MilisecondsToolStripMenuItem_Click);
+            // 
+            // mIilisecondsToolStripMenuItem
+            // 
+            this.mIilisecondsToolStripMenuItem.Name = "mIilisecondsToolStripMenuItem";
+            this.mIilisecondsToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.mIilisecondsToolStripMenuItem.Text = "Slower -";
+            this.mIilisecondsToolStripMenuItem.Click += new System.EventHandler(this.mIilisecondsToolStripMenuItem_Click);
+            // 
+            // milisecondsToolStripMenuItem3
+            // 
+            this.milisecondsToolStripMenuItem3.Name = "milisecondsToolStripMenuItem3";
+            this.milisecondsToolStripMenuItem3.Size = new System.Drawing.Size(207, 22);
+            this.milisecondsToolStripMenuItem3.Text = "2X Slower";
+            this.milisecondsToolStripMenuItem3.Click += new System.EventHandler(this.milisecondsToolStripMenuItem3_Click);
+            // 
             // graphicsPanel1
             // 
             this.graphicsPanel1.BackColor = System.Drawing.SystemColors.Window;
@@ -390,6 +441,28 @@
             this.graphicsPanel1.TabIndex = 3;
             this.graphicsPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.graphicsPanel1_Paint);
             this.graphicsPanel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.graphicsPanel1_MouseClick);
+            // 
+            // gridViewToolStripMenuItem
+            // 
+            this.gridViewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.onToolStripMenuItem,
+            this.offToolStripMenuItem});
+            this.gridViewToolStripMenuItem.Name = "gridViewToolStripMenuItem";
+            this.gridViewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gridViewToolStripMenuItem.Text = "GridView";
+            // 
+            // onToolStripMenuItem
+            // 
+            this.onToolStripMenuItem.Name = "onToolStripMenuItem";
+            this.onToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.onToolStripMenuItem.Text = "On";
+            this.onToolStripMenuItem.Click += new System.EventHandler(this.onToolStripMenuItem_Click);
+            // 
+            // offToolStripMenuItem
+            // 
+            this.offToolStripMenuItem.Name = "offToolStripMenuItem";
+            this.offToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.offToolStripMenuItem.Text = "Off";
             // 
             // Form1
             // 
@@ -453,6 +526,14 @@
         private System.Windows.Forms.ToolStripButton ResetGOL;
         private System.Windows.Forms.ToolStripButton RandomButton;
         private System.Windows.Forms.ToolStripMenuItem colorsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cellColorsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem milisecondsToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem default100MilisecondsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mIilisecondsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem milisecondsToolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem gridViewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem onToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem offToolStripMenuItem;
     }
 }
 

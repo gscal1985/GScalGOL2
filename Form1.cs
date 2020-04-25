@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using XLabs.Forms.Controls;
 
 namespace GScalGOL
 { //adding as i go
@@ -13,13 +14,13 @@ namespace GScalGOL
         bool[,] temp = new bool[15, 15];
 
         // Drawing colors
-        private readonly Color gridColor = Color.Black;
-       
-        private Color cellColor = Color.Gray;
+        private Color gridColor = Color.Black;
+
+        private Color cellColor = Color.LawnGreen;
         private Color deadcellC = Color.IndianRed;
         // The Timer class
         public Timer timer = new Timer();
-    
+
         // Generation count
         private int generations = 0;
         private int aliveCells = 0;
@@ -36,7 +37,7 @@ namespace GScalGOL
             timer.Enabled = false; // start timer running
 
 
-         
+
 
         }
 
@@ -48,10 +49,10 @@ namespace GScalGOL
 
             for (int i = -1; i < 2; i++)
             {
-              
+
                 for (int j = -1; j < 2; j++)
                 {
-                  
+
 
                     int col = (y + i + universe.GetLength(1)) % universe.GetLength(1);
 
@@ -70,8 +71,8 @@ namespace GScalGOL
             }
             return sum;
         }
-            // Calculate the next generation of cells
-            private void NextGeneration()
+        // Calculate the next generation of cells
+        private void NextGeneration()
         {
             temp = universe;
 
@@ -104,15 +105,15 @@ namespace GScalGOL
 
 
             }
-                universe = Pad;
-                Pad = temp;
+            universe = Pad;
+            Pad = temp;
             // Increment generation count
             generations++;
 
             // Update status strip generations
             toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
 
- graphicsPanel1.Invalidate();
+            graphicsPanel1.Invalidate();
         }
 
         // The event called by the timer every Interval milliseconds.
@@ -155,7 +156,7 @@ namespace GScalGOL
                     stringFormat.LineAlignment = StringAlignment.Center;
 
                     Rectangle rect = new Rectangle(0, 0, 100, 100);
-                   // int CountNeighbors = 8;
+                    // int CountNeighbors = 8;
                     // Fill the cell with a brush if alive
                     if (universe[x, y] == true)
                     {
@@ -168,11 +169,11 @@ namespace GScalGOL
 
                     // Outline the cell with a pen
                     e.Graphics.DrawRectangle(gridPen, cellRect.X, cellRect.Y, cellRect.Width, cellRect.Height);
-                  //  e.Graphics.DrawString(CountNeighbors(x,y).ToString(), font, Brushes.Black, rect, stringFormat);
+                    //  e.Graphics.DrawString(CountNeighbors(x,y).ToString(), font, Brushes.Black, rect, stringFormat);
                     stringFormat.Dispose();
                     font.Dispose();
                     TextRenderer.DrawText(e.Graphics, CountNeighbors(x, y).ToString(), this.Font, cellRect, Color.Black, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
-                 //   e.Graphics.DrawString(CountNeighbors(x, y).ToString(), graphicsPanel1.Font, Brushes.Black, cellRect.Location);
+                    //   e.Graphics.DrawString(CountNeighbors(x, y).ToString(), graphicsPanel1.Font, Brushes.Black, cellRect.Location);
                 }
             }
 
@@ -180,7 +181,7 @@ namespace GScalGOL
             gridPen.Dispose();
             cellBrush.Dispose();
             deadCellBrush.Dispose();
-          
+
         }
 
         private void graphicsPanel1_MouseClick(object sender, MouseEventArgs e)
@@ -197,7 +198,7 @@ namespace GScalGOL
                 int x = e.X / cellWidth;
                 // CELL Y = MOUSE Y / CELL HEIGHT
                 int y = e.Y / cellHeight;
-                
+
                 // Toggle the cell's state
                 universe[x, y] = !universe[x, y];
 
@@ -243,7 +244,7 @@ namespace GScalGOL
 
             // set Generations To 0 and Living Cells
             generations = 0;
-            
+
             graphicsPanel1.Invalidate();
         }
 
@@ -293,7 +294,8 @@ namespace GScalGOL
             graphicsPanel1.Invalidate();
         }
 
-        void countAliveCells() {
+        void countAliveCells()
+        {
             aliveCells = 0;
 
             for (int a = 0; a < universe.GetLength(1); a++)
@@ -301,7 +303,7 @@ namespace GScalGOL
                 for (int b = 0; b < universe.GetLength(0); b++)
                 {
 
-                    if (universe[b,a] == true)
+                    if (universe[b, a] == true)
                     {
                         aliveCells++;
                     }
@@ -310,26 +312,14 @@ namespace GScalGOL
 
             }
             //return aliveCells;
-        
+
         }
 
-        private void colorsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ColorDialog colorSelector = new ColorDialog();
 
-            colorSelector.Color = graphicsPanel1.BackColor;
-
-            if (DialogResult.OK == colorSelector.ShowDialog())
-            {
-                graphicsPanel1.BackColor = colorSelector.Color;
-            }
-
-            colorSelector.Dispose();
-        }
 
         private void saveToolStripButton_Click(object sender, EventArgs e)
         {
-            
+
 
             //For Saving The Universe
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -399,7 +389,7 @@ namespace GScalGOL
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
+
 
             //For Saving The Universe
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -667,7 +657,68 @@ namespace GScalGOL
             openfile.Dispose();
             countAliveCells();
             graphicsPanel1.Invalidate();
+
+        }
+
+        private void cellColorsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // couldnt get settings double click to work
+        }
+
+        private void newToolStripButton_Click(object sender, EventArgs e)
+        { 
+            timer.Enabled = false;
+            
+            // Iterate through the universe in the y, top to bottom
+            for (int y = 0; y < universe.GetLength(1); y++)
+            {
+                // Iterate through the universe in the x, left to right
+                for (int x = 0; x < universe.GetLength(0); x++)
+                {
+                    universe[x, y] = false;
+                }
+            }
+
+            // set Generations To 0 and Living Cells
+            generations = 0;
+           
+            toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
+            
+            graphicsPanel1.Invalidate();
+        }
+
+        private void default100MilisecondsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            timer.Interval = 100; // milliseconds
+            timer.Tick += Timer_Tick;
+            timer.Enabled = true; // start timer running
+        }
+
+        private void milisecondsToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            timer.Interval = 50; // milliseconds
+            timer.Tick += Timer_Tick;
+            timer.Enabled = true; // start timer running
+        }
+
+        private void mIilisecondsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            timer.Interval = 150; // milliseconds
+            timer.Tick += Timer_Tick;
+            timer.Enabled = true; // start timer running
+        }
+
+        private void milisecondsToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            timer.Interval = 200; // milliseconds
+            timer.Tick += Timer_Tick;
+            timer.Enabled = true; // start timer running
+        }
+
+        private void onToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
         }
     }
-    }
+}
 
