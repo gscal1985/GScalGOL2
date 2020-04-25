@@ -15,7 +15,7 @@ namespace GScalGOL
         private Color gridColor = Color.Black;
        
         private Color cellColor = Color.Gray;
-        private Color deadcellC = Color.White;
+        private Color deadcellC = Color.IndianRed;
         // The Timer class
         public Timer timer = new Timer();
     
@@ -196,7 +196,7 @@ namespace GScalGOL
                 int x = e.X / cellWidth;
                 // CELL Y = MOUSE Y / CELL HEIGHT
                 int y = e.Y / cellHeight;
-
+                
                 // Toggle the cell's state
                 universe[x, y] = !universe[x, y];
 
@@ -312,8 +312,19 @@ namespace GScalGOL
         
         }
 
+        private void colorsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ColorDialog colorSelector = new ColorDialog();
 
+            colorSelector.Color = graphicsPanel1.BackColor;
 
+            if (DialogResult.OK == colorSelector.ShowDialog())
+            {
+                graphicsPanel1.BackColor = colorSelector.Color;
+            }
+
+            colorSelector.Dispose();
+        }
     }
     }
     
