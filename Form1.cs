@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace GScalGOL
@@ -12,7 +13,7 @@ namespace GScalGOL
         bool[,] temp = new bool[15, 15];
 
         // Drawing colors
-        private Color gridColor = Color.Black;
+        private readonly Color gridColor = Color.Black;
        
         private Color cellColor = Color.Gray;
         private Color deadcellC = Color.IndianRed;
@@ -325,6 +326,348 @@ namespace GScalGOL
 
             colorSelector.Dispose();
         }
+
+        private void saveToolStripButton_Click(object sender, EventArgs e)
+        {
+            
+
+            //For Saving The Universe
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+            saveFileDialog1.DefaultExt = "cells";
+
+            saveFileDialog1.Title = "Saving The Universe.";
+
+            saveFileDialog1.Filter = "Cells and texts Files (*.txt),(*.cells)|*.txt,*.cells|All files (*.*)|*.*";
+
+            // saveFileDialog1.CheckFileExists = true;
+
+            //saveFileDialog1.CheckPathExists = true;
+
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                // Saves the Image via a FileStream created by the OpenFile method.  
+
+                StreamWriter sw = new StreamWriter(saveFileDialog1.FileName);
+
+                sw.WriteLine("!Name: " + Path.GetFileNameWithoutExtension(saveFileDialog1.FileName));
+                sw.WriteLine("!");
+
+                //Pass Thr all the Universe and check for cells' status
+
+                for (int y = 0; y < universe.GetLength(1); y++)
+                {
+
+                    if (y > 0)
+                    {
+                        sw.WriteLine();
+                    }
+
+
+
+                    for (int x = 0; x < universe.GetLength(0); x++)
+                    {
+
+
+
+                        if (universe[x, y] == false)
+                        {
+                            sw.Write(".");
+                        }
+
+                        else
+                        {
+                            sw.Write("O");
+                        }
+                    }
+
+                }
+
+                // Saves the Image in the appropriate ImageFormat based upon the  
+                // File type selected in the dialog box.  
+                // NOTE that the FilterIndex property is one-based.   
+
+
+
+                sw.Close();
+                sw.Dispose();
+            }
+
+            saveFileDialog1.Dispose();
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
+
+            //For Saving The Universe
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+            saveFileDialog1.DefaultExt = "cells";
+
+            saveFileDialog1.Title = "Saving The Universe.";
+
+            saveFileDialog1.Filter = "Cells and texts Files (*.txt),(*.cells)|*.txt,*.cells|All files (*.*)|*.*";
+
+            // saveFileDialog1.CheckFileExists = true;
+
+            //saveFileDialog1.CheckPathExists = true;
+
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                // Saves the Image via a FileStream created by the OpenFile method.  
+
+                StreamWriter sw = new StreamWriter(saveFileDialog1.FileName);
+
+                sw.WriteLine("!Name: " + Path.GetFileNameWithoutExtension(saveFileDialog1.FileName));
+                sw.WriteLine("!");
+
+                //Pass Thr all the Universe and check for cells' status
+
+                for (int y = 0; y < universe.GetLength(1); y++)
+                {
+
+                    if (y > 0)
+                    {
+                        sw.WriteLine();
+                    }
+
+
+
+                    for (int x = 0; x < universe.GetLength(0); x++)
+                    {
+
+
+
+                        if (universe[x, y] == false)
+                        {
+                            sw.Write(".");
+                        }
+
+                        else
+                        {
+                            sw.Write("O");
+                        }
+                    }
+
+                }
+
+                // Saves the Image in the appropriate ImageFormat based upon the  
+                // File type selected in the dialog box.  
+                // NOTE that the FilterIndex property is one-based.   
+
+
+
+                sw.Close();
+                sw.Dispose();
+            }
+
+            saveFileDialog1.Dispose();
+        }
+
+        private void openToolStripButton_Click(object sender, EventArgs e)
+        {
+            string line = "";
+            int counterY = 0;
+            int lineX = 0;
+
+            //For Saving The Universe
+            OpenFileDialog openfile = new OpenFileDialog();
+
+            openfile.DefaultExt = "cells";
+
+            openfile.Title = "Opening the Universe.";
+
+            openfile.Filter = "cells files (*.cells)|*.cells|Text Files (*.txt)|*.txt|All files (*.*)|*.*";
+
+            openfile.CheckPathExists = true;
+
+
+            if (openfile.ShowDialog() == DialogResult.OK)
+            {
+
+                // Saves the Image via a FileStream created by the OpenFile method.   
+                Stream s = new MemoryStream();
+                s.Dispose();
+                StreamReader sr = new StreamReader(openfile.FileName);
+
+
+                while ((line = sr.ReadLine()) != null)
+                {
+                    if (line[0] == '!')
+                    {
+                        continue;
+                    }
+
+                    else if (line[1] == '!')
+                    {
+                        continue;
+                    }
+
+                    lineX = line.Length;
+
+
+                    counterY++;
+                }
+
+
+                sr.Close();
+                sr.Dispose();
+
+                //Resize The Universe 
+
+                universe = new bool[lineX, counterY];
+                Pad = new bool[lineX, counterY];
+                //temp = new bool[lineX, counterY] ;
+
+
+                lineX--;
+                counterY = 0;
+
+
+                StreamReader st = new StreamReader(openfile.FileName);
+
+                //   StreamReader st = new StreamReader(openfile.FileName);
+
+                while ((line = st.ReadLine()) != null)
+                {
+                    if (line[0] == '!')
+                    {
+                        continue;
+                    }
+
+
+                    for (int x = 0; x < lineX; x++)
+                    {
+
+                        if (line[x] == '.')
+                        {
+                            universe[x, counterY] = false;
+                        }
+
+                        else if (line[x] == 'O')
+                        {
+                            universe[x, counterY] = true;
+                        }
+
+                    }
+
+                    counterY++;
+
+
+
+                }
+                st.Close();
+                st.Dispose();
+            }
+
+            openfile.Dispose();
+            countAliveCells();
+            graphicsPanel1.Invalidate();
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string line = "";
+            int counterY = 0;
+            int lineX = 0;
+
+            //For Saving The Universe
+            OpenFileDialog openfile = new OpenFileDialog();
+
+            openfile.DefaultExt = "cells";
+
+            openfile.Title = "Opening the Universe.";
+
+            openfile.Filter = "cells files (*.cells)|*.cells|Text Files (*.txt)|*.txt|All files (*.*)|*.*";
+
+            openfile.CheckPathExists = true;
+
+
+            if (openfile.ShowDialog() == DialogResult.OK)
+            {
+
+                // Saves the Image via a FileStream created by the OpenFile method.   
+                Stream s = new MemoryStream();
+                s.Dispose();
+                StreamReader sr = new StreamReader(openfile.FileName);
+
+
+                while ((line = sr.ReadLine()) != null)
+                {
+                    if (line[0] == '!')
+                    {
+                        continue;
+                    }
+
+                    else if (line[1] == '!')
+                    {
+                        continue;
+                    }
+
+                    lineX = line.Length;
+
+
+                    counterY++;
+                }
+
+
+                sr.Close();
+                sr.Dispose();
+
+                //Resize The Universe 
+
+                universe = new bool[lineX, counterY];
+                Pad = new bool[lineX, counterY];
+                //temp = new bool[lineX, counterY] ;
+
+
+                lineX--;
+                counterY = 0;
+
+
+                StreamReader st = new StreamReader(openfile.FileName);
+
+                //   StreamReader st = new StreamReader(openfile.FileName);
+
+                while ((line = st.ReadLine()) != null)
+                {
+                    if (line[0] == '!')
+                    {
+                        continue;
+                    }
+
+
+                    for (int x = 0; x < lineX; x++)
+                    {
+
+                        if (line[x] == '.')
+                        {
+                            universe[x, counterY] = false;
+                        }
+
+                        else if (line[x] == 'O')
+                        {
+                            universe[x, counterY] = true;
+                        }
+
+                    }
+
+                    counterY++;
+
+
+
+                }
+                st.Close();
+                st.Dispose();
+            }
+
+            openfile.Dispose();
+            countAliveCells();
+            graphicsPanel1.Invalidate();
+        }
     }
     }
-    
+
