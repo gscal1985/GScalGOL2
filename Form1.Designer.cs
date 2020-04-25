@@ -41,8 +41,16 @@
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cellColorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.emptyCellColorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.milisecondsToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.default100MilisecondsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mIilisecondsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.milisecondsToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.gridViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.onToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.offToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.indexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,14 +74,8 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.ResetGOL = new System.Windows.Forms.ToolStripButton();
             this.RandomButton = new System.Windows.Forms.ToolStripButton();
-            this.milisecondsToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.default100MilisecondsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mIilisecondsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.milisecondsToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.graphicsPanel1 = new GScalGOL.GraphicsPanel();
-            this.gridViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.onToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.offToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reloadToLastKnownColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -169,7 +171,8 @@
             // customizeToolStripMenuItem
             // 
             this.customizeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cellColorsToolStripMenuItem});
+            this.cellColorsToolStripMenuItem,
+            this.emptyCellColorsToolStripMenuItem});
             this.customizeToolStripMenuItem.Name = "customizeToolStripMenuItem";
             this.customizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.customizeToolStripMenuItem.Text = "&Customize";
@@ -177,9 +180,18 @@
             // cellColorsToolStripMenuItem
             // 
             this.cellColorsToolStripMenuItem.Name = "cellColorsToolStripMenuItem";
-            this.cellColorsToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.cellColorsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.cellColorsToolStripMenuItem.Text = "Cell Colors";
             this.cellColorsToolStripMenuItem.Click += new System.EventHandler(this.cellColorsToolStripMenuItem_Click);
+            // 
+            // emptyCellColorsToolStripMenuItem
+            // 
+            this.emptyCellColorsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.reloadToLastKnownColorToolStripMenuItem});
+            this.emptyCellColorsToolStripMenuItem.Name = "emptyCellColorsToolStripMenuItem";
+            this.emptyCellColorsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.emptyCellColorsToolStripMenuItem.Text = "Reset Color Defaults";
+            this.emptyCellColorsToolStripMenuItem.Click += new System.EventHandler(this.emptyCellColorsToolStripMenuItem_Click);
             // 
             // optionsToolStripMenuItem
             // 
@@ -198,8 +210,58 @@
             this.mIilisecondsToolStripMenuItem,
             this.milisecondsToolStripMenuItem3});
             this.colorsToolStripMenuItem.Name = "colorsToolStripMenuItem";
-            this.colorsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.colorsToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.colorsToolStripMenuItem.Text = "Timer Speed";
+            // 
+            // milisecondsToolStripMenuItem2
+            // 
+            this.milisecondsToolStripMenuItem2.Name = "milisecondsToolStripMenuItem2";
+            this.milisecondsToolStripMenuItem2.Size = new System.Drawing.Size(207, 22);
+            this.milisecondsToolStripMenuItem2.Text = "Faster +";
+            this.milisecondsToolStripMenuItem2.Click += new System.EventHandler(this.milisecondsToolStripMenuItem2_Click);
+            // 
+            // default100MilisecondsToolStripMenuItem
+            // 
+            this.default100MilisecondsToolStripMenuItem.Name = "default100MilisecondsToolStripMenuItem";
+            this.default100MilisecondsToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.default100MilisecondsToolStripMenuItem.Text = "Default (100 miliseconds)";
+            this.default100MilisecondsToolStripMenuItem.Click += new System.EventHandler(this.default100MilisecondsToolStripMenuItem_Click);
+            // 
+            // mIilisecondsToolStripMenuItem
+            // 
+            this.mIilisecondsToolStripMenuItem.Name = "mIilisecondsToolStripMenuItem";
+            this.mIilisecondsToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.mIilisecondsToolStripMenuItem.Text = "Slower -";
+            this.mIilisecondsToolStripMenuItem.Click += new System.EventHandler(this.mIilisecondsToolStripMenuItem_Click);
+            // 
+            // milisecondsToolStripMenuItem3
+            // 
+            this.milisecondsToolStripMenuItem3.Name = "milisecondsToolStripMenuItem3";
+            this.milisecondsToolStripMenuItem3.Size = new System.Drawing.Size(207, 22);
+            this.milisecondsToolStripMenuItem3.Text = "2X Slower";
+            this.milisecondsToolStripMenuItem3.Click += new System.EventHandler(this.milisecondsToolStripMenuItem3_Click);
+            // 
+            // gridViewToolStripMenuItem
+            // 
+            this.gridViewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.onToolStripMenuItem,
+            this.offToolStripMenuItem});
+            this.gridViewToolStripMenuItem.Name = "gridViewToolStripMenuItem";
+            this.gridViewToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.gridViewToolStripMenuItem.Text = "GridView";
+            // 
+            // onToolStripMenuItem
+            // 
+            this.onToolStripMenuItem.Name = "onToolStripMenuItem";
+            this.onToolStripMenuItem.Size = new System.Drawing.Size(91, 22);
+            this.onToolStripMenuItem.Text = "On";
+            this.onToolStripMenuItem.Click += new System.EventHandler(this.onToolStripMenuItem_Click);
+            // 
+            // offToolStripMenuItem
+            // 
+            this.offToolStripMenuItem.Name = "offToolStripMenuItem";
+            this.offToolStripMenuItem.Size = new System.Drawing.Size(91, 22);
+            this.offToolStripMenuItem.Text = "Off";
             // 
             // helpToolStripMenuItem
             // 
@@ -403,34 +465,6 @@
             this.RandomButton.Text = "RandomSeed";
             this.RandomButton.Click += new System.EventHandler(this.RandomButton_Click);
             // 
-            // milisecondsToolStripMenuItem2
-            // 
-            this.milisecondsToolStripMenuItem2.Name = "milisecondsToolStripMenuItem2";
-            this.milisecondsToolStripMenuItem2.Size = new System.Drawing.Size(207, 22);
-            this.milisecondsToolStripMenuItem2.Text = "Faster +";
-            this.milisecondsToolStripMenuItem2.Click += new System.EventHandler(this.milisecondsToolStripMenuItem2_Click);
-            // 
-            // default100MilisecondsToolStripMenuItem
-            // 
-            this.default100MilisecondsToolStripMenuItem.Name = "default100MilisecondsToolStripMenuItem";
-            this.default100MilisecondsToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-            this.default100MilisecondsToolStripMenuItem.Text = "Default (100 miliseconds)";
-            this.default100MilisecondsToolStripMenuItem.Click += new System.EventHandler(this.default100MilisecondsToolStripMenuItem_Click);
-            // 
-            // mIilisecondsToolStripMenuItem
-            // 
-            this.mIilisecondsToolStripMenuItem.Name = "mIilisecondsToolStripMenuItem";
-            this.mIilisecondsToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-            this.mIilisecondsToolStripMenuItem.Text = "Slower -";
-            this.mIilisecondsToolStripMenuItem.Click += new System.EventHandler(this.mIilisecondsToolStripMenuItem_Click);
-            // 
-            // milisecondsToolStripMenuItem3
-            // 
-            this.milisecondsToolStripMenuItem3.Name = "milisecondsToolStripMenuItem3";
-            this.milisecondsToolStripMenuItem3.Size = new System.Drawing.Size(207, 22);
-            this.milisecondsToolStripMenuItem3.Text = "2X Slower";
-            this.milisecondsToolStripMenuItem3.Click += new System.EventHandler(this.milisecondsToolStripMenuItem3_Click);
-            // 
             // graphicsPanel1
             // 
             this.graphicsPanel1.BackColor = System.Drawing.SystemColors.Window;
@@ -442,27 +476,12 @@
             this.graphicsPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.graphicsPanel1_Paint);
             this.graphicsPanel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.graphicsPanel1_MouseClick);
             // 
-            // gridViewToolStripMenuItem
+            // reloadToLastKnownColorToolStripMenuItem
             // 
-            this.gridViewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.onToolStripMenuItem,
-            this.offToolStripMenuItem});
-            this.gridViewToolStripMenuItem.Name = "gridViewToolStripMenuItem";
-            this.gridViewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.gridViewToolStripMenuItem.Text = "GridView";
-            // 
-            // onToolStripMenuItem
-            // 
-            this.onToolStripMenuItem.Name = "onToolStripMenuItem";
-            this.onToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.onToolStripMenuItem.Text = "On";
-            this.onToolStripMenuItem.Click += new System.EventHandler(this.onToolStripMenuItem_Click);
-            // 
-            // offToolStripMenuItem
-            // 
-            this.offToolStripMenuItem.Name = "offToolStripMenuItem";
-            this.offToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.offToolStripMenuItem.Text = "Off";
+            this.reloadToLastKnownColorToolStripMenuItem.Name = "reloadToLastKnownColorToolStripMenuItem";
+            this.reloadToLastKnownColorToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.reloadToLastKnownColorToolStripMenuItem.Text = "Reload to last Known Color";
+            this.reloadToLastKnownColorToolStripMenuItem.Click += new System.EventHandler(this.reloadToLastKnownColorToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -476,6 +495,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Game of Life";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -534,6 +554,8 @@
         private System.Windows.Forms.ToolStripMenuItem gridViewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem onToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem offToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem emptyCellColorsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reloadToLastKnownColorToolStripMenuItem;
     }
 }
 

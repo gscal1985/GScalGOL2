@@ -16,8 +16,8 @@ namespace GScalGOL
         // Drawing colors
         private Color gridColor = Color.Black;
 
-        private Color cellColor = Color.LawnGreen;
-        private Color deadcellC = Color.IndianRed;
+        private Color cellColor = Color.DodgerBlue;
+        private Color deadcellC = Color.LightSlateGray;
         // The Timer class
         public Timer timer = new Timer();
 
@@ -35,8 +35,8 @@ namespace GScalGOL
             timer.Interval = 100; // milliseconds
             timer.Tick += Timer_Tick;
             timer.Enabled = false; // start timer running
-
-
+            //read settings
+            cellColor = Properties.Settings.Default.CellColor;
 
 
         }
@@ -659,10 +659,24 @@ namespace GScalGOL
             graphicsPanel1.Invalidate();
 
         }
+       
 
         private void cellColorsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // couldnt get settings double click to work
+
+
+            ColorDialog dlg = new ColorDialog();
+
+            dlg.Color = cellColor;
+
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+                cellColor = dlg.Color;
+                
+            }
+
+            dlg.Dispose();
         }
 
         private void newToolStripButton_Click(object sender, EventArgs e)
@@ -718,6 +732,25 @@ namespace GScalGOL
         private void onToolStripMenuItem_Click(object sender, EventArgs e)
         {
            
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Properties.Settings.Default.CellColor = cellColor;
+
+            Properties.Settings.Default.Save();
+        }
+
+        private void emptyCellColorsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Reset();
+            cellColor = Properties.Settings.Default.CellColor;
+        }
+
+        private void reloadToLastKnownColorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Reload();
+            cellColor = Properties.Settings.Default.CellColor;
         }
     }
 }
